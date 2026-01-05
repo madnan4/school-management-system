@@ -3,16 +3,16 @@ A full-stack School Management System with dedicated portals for Admin, Teachers
 
 ---
 
-## 📌 Project Goals
+## Project Goals
 
-- ✅ Multi-role system: Admin, Teacher, Student
-- ✅ Authentication & Role-based Authorization
-- ✅ School and User Management (CRUD)
-- ✅ Class and Subject Assignment
-- ✅ Attendance and Grades Tracking
-- ✅ Responsive UI for each portal
-- ✅ API-first architecture with secure endpoints
-- ✅ Deployment-ready setup
+- Multi-role system: Admin, Teacher, Student
+- Authentication & Role-based Authorization
+- School and User Management (CRUD)
+- Class and Subject Assignment
+- Attendance and Grades Tracking
+- Responsive UI for each portal
+- API-first architecture with secure endpoints
+- Deployment-ready setup
 
 ---
 
