@@ -1,0 +1,42 @@
+### Create Class (admin)
+POST http://localhost:3600/api/classes
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "class_name": "Grade 10A"
+}
+
+###
+
+### Create Another Class (admin)
+POST http://localhost:3600/api/classes
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "class_name": "Grade 11B"
+}
+
+###
+
+### Get All Classes
+GET http://localhost:3600/api/classes
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Rename Class (admin)
+PATCH http://localhost:3600/api/classes/1
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "class_name": "Grade 10A (Renamed)"
+}
+
+###
+
+### Delete Class (admin)
+DELETE http://localhost:3600/api/classes/2
+Authorization: Bearer {{admin_token}}

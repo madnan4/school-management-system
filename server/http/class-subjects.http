@@ -1,0 +1,34 @@
+### Assign Teacher to Subject in Class (admin)
+# Requires: valid class_id, subject_id, teacher_id from your DB
+POST http://localhost:3600/api/class-subjects
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "class_id": 1,
+  "subject_id": 1,
+  "teacher_id": 2
+}
+
+###
+
+### Get All Class-Subject Assignments
+GET http://localhost:3600/api/class-subjects
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Reassign Teacher (admin)
+PATCH http://localhost:3600/api/class-subjects/1
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "teacher_id": 3
+}
+
+###
+
+### Remove Assignment (admin)
+DELETE http://localhost:3600/api/class-subjects/1
+Authorization: Bearer {{admin_token}}

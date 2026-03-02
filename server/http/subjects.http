@@ -1,0 +1,42 @@
+### Create Subject (admin)
+POST http://localhost:3600/api/subjects
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "subject_name": "Mathematics"
+}
+
+###
+
+### Create Another Subject (admin)
+POST http://localhost:3600/api/subjects
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "subject_name": "Biology"
+}
+
+###
+
+### Get All Subjects
+GET http://localhost:3600/api/subjects
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Rename Subject (admin)
+PATCH http://localhost:3600/api/subjects/1
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "subject_name": "Advanced Mathematics"
+}
+
+###
+
+### Delete Subject (admin)
+DELETE http://localhost:3600/api/subjects/2
+Authorization: Bearer {{admin_token}}

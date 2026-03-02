@@ -1,0 +1,33 @@
+### Enroll Student in Class (admin)
+POST http://localhost:3600/api/enrollments
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "student_id": 1,
+  "class_id": 1
+}
+
+###
+
+### Enroll Same Student Again (expect 409)
+POST http://localhost:3600/api/enrollments
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "student_id": 1,
+  "class_id": 1
+}
+
+###
+
+### Get All Enrollments
+GET http://localhost:3600/api/enrollments
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Unenroll Student (admin)
+DELETE http://localhost:3600/api/enrollments/1
+Authorization: Bearer {{admin_token}}

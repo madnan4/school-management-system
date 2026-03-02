@@ -1,0 +1,144 @@
+### Health Check
+GET http://localhost:3600/health
+
+###
+
+### Login as Admin  ← run this first
+POST http://localhost:3600/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@school.com",
+  "password": "admin123"
+}
+
+> {%
+  client.global.set("admin_token", response.body.token);
+%}
+
+###
+
+### Login as Teacher  ← run this second
+POST http://localhost:3600/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "alice@sunrise.com",
+  "password": "secret123"
+}
+
+> {%
+  client.global.set("teacher_token", response.body.token);
+%}
+
+###
+
+### Login - Wrong Password (expect 401)
+POST http://localhost:3600/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@school.com",
+  "password": "wrongpassword"
+}
+
+###
+
+### Get All Users - Admin token (expect 200)
+GET http://localhost:3600/api/users
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Get All Users - No token (expect 401)
+GET http://localhost:3600/api/users
+
+###
+
+### Get All Users - Teacher token (expect 403)
+GET http://localhost:3600/api/users
+Authorization: Bearer {{teacher_token}}
+
+###
+
+### Register New User - Admin only (expect 201)
+POST http://localhost:3600/api/users
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "name": "Jane Teacher",
+  "email": "jane@school.com",
+  "password": "pass123",
+  "role": "teacher",
+  "school_id": 1
+}
+
+###
+
+### Update User (admin)
+PATCH http://localhost:3600/api/users/1
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "name": "Charlie Updated",
+  "role": "student"
+}
+
+###
+
+### Delete User (admin)
+DELETE http://localhost:3600/api/users/4
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Delete Own Account (expect 400)
+DELETE http://localhost:3600/api/users/3
+Authorization: Bearer {{admin_token}}
+
+###
+
+### Get All Schools - Teacher token (expect 200)
+GET http://localhost:3600/api/schools
+Authorization: Bearer {{teacher_token}}
+
+###
+
+### Add School - Admin only (expect 201)
+POST http://localhost:3600/api/schools
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "school_name": "Greenwood High",
+  "director_name": "Mark Johnson",
+  "email": "mark@greenwood.com",
+  "contact_number": "0551234567",
+  "address": "789 Pine Road"
+}
+
+###
+
+### Update School (admin)
+PATCH http://localhost:3600/api/schools/1
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "director_name": "John Updated",
+  "contact_number": "0991234567"
+}
+
+###
+
+### Add School - No token (expect 401)
+POST http://localhost:3600/api/schools
+Content-Type: application/json
+
+{
+  "school_name": "Blocked School",
+  "director_name": "Nobody",
+  "email": "nobody@blocked.com"
+}

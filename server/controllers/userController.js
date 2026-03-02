@@ -30,4 +30,39 @@ exports.getAllUsers = (req, res) => {
     }
     res.json(results);
   });
-}
+};
+
+exports.updateUser = (req, res) => {
+  const { name, role, school_id } = req.body;
+  const { id } = req.params;
+
+  const fields = {};
+  if (name)      fields.name      = name;
+  if (role)      fields.role      = role;
+  if (school_id) fields.school_id = school_id;
+
+  if (Object.keys(fields).length === 0) {
+    return res.status(400).json({ error: 'No valid fields provided to update.' });
+  }
+
+  const sql = 'UPDATE users SET ? WHERE id = ?';
+  db.query(sql, [fields, id], (err, result) => {
+    if (err) return res.status(500).json({ error: 'Database error.' });
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'User not found.' });
+    res.json({ message: 'User updated successfully.' });
+  });
+};
+
+exports.deleteUser = (req, res) => {
+  const { id } = req.params;
+
+  if (parseInt(id) === req.user.id) {
+    return res.status(400).json({ error: 'You cannot delete your own account.' });
+  }
+
+  db.query('DELETE FROM users WHERE id = ?', [id], (err, result) => {
+    if (err) return res.status(500).json({ error: 'Database error.' });
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'User not found.' });
+    res.json({ message: 'User deleted successfully.' });
+  });
+};

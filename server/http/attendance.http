@@ -1,0 +1,63 @@
+### Record Attendance (teacher or admin)
+POST http://localhost:3600/api/attendance
+Content-Type: application/json
+Authorization: Bearer {{teacher_token}}
+
+{
+  "student_id": 1,
+  "class_id": 1,
+  "date": "2026-03-01",
+  "status": "present"
+}
+
+###
+
+### Record Another Student as Absent
+POST http://localhost:3600/api/attendance
+Content-Type: application/json
+Authorization: Bearer {{teacher_token}}
+
+{
+  "student_id": 4,
+  "class_id": 1,
+  "date": "2026-03-01",
+  "status": "absent"
+}
+
+###
+
+### Invalid Status (expect 400)
+POST http://localhost:3600/api/attendance
+Content-Type: application/json
+Authorization: Bearer {{teacher_token}}
+
+{
+  "student_id": 1,
+  "class_id": 1,
+  "date": "2026-03-01",
+  "status": "excused"
+}
+
+###
+
+### Get All Attendance
+GET http://localhost:3600/api/attendance
+Authorization: Bearer {{teacher_token}}
+
+###
+
+### Filter by Class
+GET http://localhost:3600/api/attendance?class_id=1
+Authorization: Bearer {{teacher_token}}
+
+###
+
+### Filter by Student
+GET http://localhost:3600/api/attendance?student_id=1
+Authorization: Bearer {{teacher_token}}
+
+###
+
+### Filter by Date
+GET http://localhost:3600/api/attendance?date=2026-03-01
+Authorization: Bearer {{teacher_token}}
