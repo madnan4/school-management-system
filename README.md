@@ -79,37 +79,95 @@ All foreign keys use `ON DELETE CASCADE`.
 
 ## API Endpoints
 
-| Method | Endpoint                   | Access              | Description                        |
-|--------|----------------------------|---------------------|------------------------------------|
-| POST   | `/api/auth/login`          | Public              | Login, returns JWT                 |
-| GET    | `/api/schools`             | Admin               | List all schools                   |
-| POST   | `/api/schools`             | Admin               | Create a school                    |
-| PATCH  | `/api/schools/:id`         | Admin               | Update a school                    |
-| DELETE | `/api/schools/:id`         | Admin               | Delete a school                    |
-| GET    | `/api/users`               | Admin               | List users                         |
-| POST   | `/api/users`               | Admin               | Create a user                      |
-| PATCH  | `/api/users/:id`           | Admin               | Update a user                      |
-| DELETE | `/api/users/:id`           | Admin               | Delete a user                      |
-| GET    | `/api/classes`             | Admin, Teacher      | List classes                       |
-| POST   | `/api/classes`             | Admin               | Create a class                     |
-| PATCH  | `/api/classes/:id`         | Admin               | Update a class                     |
-| DELETE | `/api/classes/:id`         | Admin               | Delete a class                     |
-| GET    | `/api/subjects`            | Admin, Teacher      | List subjects                       |
-| POST   | `/api/subjects`            | Admin               | Create a subject                   |
-| PATCH  | `/api/subjects/:id`        | Admin               | Update a subject                   |
-| DELETE | `/api/subjects/:id`        | Admin               | Delete a subject                   |
-| GET    | `/api/class-subjects`      | Admin, Teacher      | List teacher assignments           |
-| POST   | `/api/class-subjects`      | Admin               | Assign teacher to class/subject    |
-| DELETE | `/api/class-subjects/:id`  | Admin               | Remove assignment                  |
-| GET    | `/api/enrollments`         | Admin               | List student enrollments           |
-| POST   | `/api/enrollments`         | Admin               | Enroll a student in a class        |
-| DELETE | `/api/enrollments/:id`     | Admin               | Remove enrollment                  |
-| GET    | `/api/attendance`          | All roles           | Get attendance (students see own)  |
-| POST   | `/api/attendance`          | Teacher             | Record attendance                  |
-| PATCH  | `/api/attendance/:id`      | Teacher             | Update attendance record           |
-| GET    | `/api/grades`              | All roles           | Get grades (students see own)      |
-| POST   | `/api/grades`              | Teacher             | Record a grade                     |
-| PATCH  | `/api/grades/:id`          | Teacher             | Update a grade                     |
+### Auth
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| POST | `/api/auth/login` | Public | Login, returns JWT |
+
+---
+
+### Schools
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/schools` | Admin | List all schools |
+| POST | `/api/schools` | Admin | Create a school |
+| PATCH | `/api/schools/:id` | Admin | Update a school |
+| DELETE | `/api/schools/:id` | Admin | Delete a school |
+
+---
+
+### Users
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/users` | Admin | List users |
+| POST | `/api/users` | Admin | Create a user |
+| PATCH | `/api/users/:id` | Admin | Update a user |
+| DELETE | `/api/users/:id` | Admin | Delete a user |
+
+---
+
+### Classes
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/classes` | Admin, Teacher | List classes |
+| POST | `/api/classes` | Admin | Create a class |
+| PATCH | `/api/classes/:id` | Admin | Update a class |
+| DELETE | `/api/classes/:id` | Admin | Delete a class |
+
+---
+
+### Subjects
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/subjects` | Admin, Teacher | List subjects |
+| POST | `/api/subjects` | Admin | Create a subject |
+| PATCH | `/api/subjects/:id` | Admin | Update a subject |
+| DELETE | `/api/subjects/:id` | Admin | Delete a subject |
+
+---
+
+### Class-Subject Assignments
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/class-subjects` | Admin, Teacher | List teacher assignments |
+| POST | `/api/class-subjects` | Admin | Assign teacher to class/subject |
+| DELETE | `/api/class-subjects/:id` | Admin | Remove assignment |
+
+---
+
+### Enrollments
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/enrollments` | Admin | List enrollments |
+| POST | `/api/enrollments` | Admin | Enroll a student |
+| DELETE | `/api/enrollments/:id` | Admin | Remove enrollment |
+
+---
+
+### Attendance
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/attendance` | Admin, Teacher, Student | Get attendance (students see own only) |
+| POST | `/api/attendance` | Teacher | Record attendance |
+| PATCH | `/api/attendance/:id` | Teacher | Update attendance record |
+
+---
+
+### Grades
+
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/grades` | Admin, Teacher, Student | Get grades (students see own only) |
+| POST | `/api/grades` | Teacher | Record a grade |
+| PATCH | `/api/grades/:id` | Teacher | Update a grade |
 
 ---
 
